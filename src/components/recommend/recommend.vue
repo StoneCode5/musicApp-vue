@@ -38,7 +38,8 @@
   import Slider from 'base/slider/slider'
   import Loading from 'base/loading/loading'
   import Scroll from 'base/scroll/scroll'
-  import {getRecommend, getDiscList} from 'api/recommend'
+  import {getRecommend, getDiscList, getDiscListJSONP} from 'api/recommend'
+  // import { gerInfo } from 'api/singer'
   import {playlistMixin} from 'common/js/mixin'
   import {ERR_OK} from 'api/config'
   import {mapMutations} from 'vuex'
@@ -52,11 +53,22 @@
       }
     },
     created() {
-      this._getRecommend()
-
-      this._getDiscList()
+      // this._getRecommend()
+      // this._getDiscList()
+      getDiscList().then(res => {
+        console.warn('res', res)
+      })
+      // this.getDiscList()
+    },
+    mounted () {
+  
     },
     methods: {
+      getDiscList() {
+        getDiscListJSONP().then((res) => {
+          console.log('res', res)
+        })
+      },
       handlePlaylist(playlist) {
         const bottom = playlist.length > 0 ? '60px' : ''
 

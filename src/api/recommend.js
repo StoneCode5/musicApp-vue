@@ -36,6 +36,33 @@ export function getDiscList() {
   })
 }
 
+export function getDiscListJSONP() {
+  const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
+
+  // inCharset:utf8 // 有区别
+
+  const data = Object.assign({}, {
+    g_tk: 5381,
+    picmid: 1,
+    platform: 'yqq',
+    loginUin: 0,
+    hostUin: 0,
+    sin: 0,
+    ein: 29,
+    sortId: 5,
+    needNewCode: 0,
+    categoryId: 10000000,
+    rnd: Math.random(),
+    format: 'jsonp',
+    inCharset: 'utf8',
+    outCharset: 'utf-8',
+    notice: 0
+
+  })
+
+  return jsonp(url, data, options)
+}
+
 export function getSongList(disstid) {
   const url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
 
